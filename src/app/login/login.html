@@ -1,0 +1,41 @@
+<section class="login-container">
+  <div class="login-card">
+    <h2>Iniciar Sesión</h2>
+    <p class="subtitle">Ingresá tus credenciales para acceder</p>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="usuario">Usuario</label>
+        <input
+          type="text"
+          id="usuario"
+          name="usuario"
+          [(ngModel)]="usuario"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+
+      @if (errorMsg) {
+        <div class="error-alert">
+          {{ errorMsg }}
+        </div>
+      }
+
+      <button type="submit" class="btn-submit" [disabled]="cargando">
+        {{ cargando ? 'Iniciando...' : 'Ingresar' }}
+      </button>
+    </form>
+  </div>
+</section>
+

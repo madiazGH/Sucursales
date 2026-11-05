@@ -1,16 +1,35 @@
 <header class="main-header">
   <div class="header-container">
     <div class="brand">
-      <span class="brand-icon">💼</span>
-      <h1>Bienvenidos a mi proyector de Angular</h1>
+      <h1>Sistema Sucursales - Programación II</h1>
     </div>
+
+    <!-- Navegación centrada -->
     <nav class="nav-menu">
-      <button routerLink="/home" class="nav-btn" routerLinkActive="active-link">Home</button>
-      <button routerLink="/ventas" class="nav-btn" routerLinkActive="active-link">Ventas</button>
+      <button routerLink="/home" class="nav-btn" routerLinkActive="active-link">Inicio</button>
       <button routerLink="/sucursales" class="nav-btn" routerLinkActive="active-link">Sucursales</button>
-      <button routerLink="/clientes" class="nav-btn" routerLinkActive="active-link">Clientes</button>
+
+      @if (authService.isLoggedIn()) {
+        <button routerLink="/ventas" class="nav-btn" routerLinkActive="active-link">Ventas</button>
+        <button routerLink="/clientes" class="nav-btn" routerLinkActive="active-link">Clientes</button>
+      }
+
+      @if (authService.isAdmin()) {
+        <button routerLink="/usuarios" class="nav-btn" routerLinkActive="active-link">Usuarios</button>
+      }
     </nav>
-    <app-reloj></app-reloj>
+
+    <!-- Zona derecha: Botón Login / Usuario / Salir -->
+    <div class="auth-section">
+      @if (authService.isLoggedIn()) {
+        <div class="user-pill">
+          <span class="user-name">{{ authService.currentUser()?.nombre }} ({{ authService.currentUser()?.rol }})</span>
+          <button (click)="cerrarSesion()" class="btn-logout" title="Cerrar sesión">Salir</button>
+        </div>
+      } @else {
+        <button routerLink="/login" class="btn-login" routerLinkActive="active-login">Iniciar Sesión</button>
+      }
+    </div>
   </div>
 </header>
 

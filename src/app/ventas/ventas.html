@@ -1,28 +1,55 @@
 <section class="sales-dashboard">
   <!-- Encabezado de Ventas -->
   <div class="dashboard-header">
-    <h2>Análisis de Ventas por Sucursal</h2>
-    <p>Visualización del rendimiento financiero mensual de nuestras sedes principales.</p>
+    <h2>Ventas</h2>
   </div>
 
-  <!-- Contenedor de la Tabla Dinámica -->
-  <div class="card table-card">
-    <div #contenedor class="table-responsive"></div>
+  <!-- Leyenda de Sucursales centrada con puntito de color -->
+  <div class="branch-legend">
+    <div class="legend-item">
+      <span class="color-dot blue"></span>
+      <span>Santa Fe</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot red"></span>
+      <span>Paraná</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot green"></span>
+      <span>Santo Tomé</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot orange"></span>
+      <span>Rafaela</span>
+    </div>
+    <div class="legend-item">
+      <span class="color-dot purple"></span>
+      <span>Rosario</span>
+    </div>
   </div>
+
+
 
   <!-- Contenedor del Grid de Gráficos -->
   <div class="charts-grid">
+
+      <!-- Contenedor de la Tabla Dinámica -->
+    <div>
+      <h2>Tabla Sucursales</h2>
+      <div #contenedor class="table-responsive"></div>
+    </div>
+      
     <!-- Gráfico de Líneas -->
-    <div class="card chart-card">
-      <h3>📈 Tendencia Mensual (Líneas)</h3>
+    <div>
+      <h2>Tendencia Mensual</h2>
       <div class="svg-container">
         <svg #graficoLineas viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet"></svg>
       </div>
     </div>
 
     <!-- Gráfico de Barras -->
-    <div class="card chart-card">
-      <h3>📊 Distribución Acumulada (Barras Apiladas)</h3>
+    <div>
+      <h2>Barras Apiladas</h2>
       <div class="svg-container">
         <svg #graficoBarras viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet"></svg>
       </div>

@@ -1,148 +1,122 @@
-/* Contenedor Principal */
 .branches-container {
-    padding: 2.5rem 1.5rem;
-    font-family: system-ui, -apple-system, sans-serif;
-    color: #1e293b;
-  }
-  
-  /* Encabezado */
-  .branches-header {
-    margin-bottom: 2.5rem;
-  }
-  
-  .branches-header h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #0f172a;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: -0.025em;
-  }
-  
-  .branches-header p {
-    color: #64748b;
-    font-size: 1rem;
-    margin: 0;
-  }
-  
-  /* Grid de Tarjetas */
-  .branches-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  /* Tarjeta de Sucursal */
-  .branch-card {
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .branch-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    border-color: #cbd5e1;
-  }
-  
-  /* Identificador ID */
-  .branch-id {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: #f1f5f9;
-    color: #475569;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    text-transform: uppercase;
-  }
-  
-  /* Sección de Información de Ubicación */
-  .branch-info {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    margin-top: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .info-icon {
-    font-size: 1.75rem;
-    background-color: #f8fafc;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: 1px solid #f1f5f9;
-  }
-  
-  .info-text h3 {
-    margin: 0 0 0.25rem 0;
-    font-size: 1.2rem;
-    color: #0f172a;
-    font-weight: 700;
-  }
-  
-  .info-text .address {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #64748b;
-    line-height: 1.4;
-  }
-  
-  /* Metadatos (Empleados) */
-  .branch-meta {
-    border-top: 1px dashed #e2e8f0;
-    padding-top: 1rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
-  .meta-icon {
-    font-size: 1.1rem;
-  }
-  
-  .meta-label {
-    color: #94a3b8;
-  }
-  
-  .meta-value {
-    color: #334155;
-    font-weight: 600;
-  }
-  
-  /* Botón de Acción */
-  .branch-actions {
-    margin-top: auto; /* Empuja el botón al fondo si las tarjetas tienen alturas distintas */
-  }
-  
-  .btn-action {
-    width: 100%;
-    background-color: #f8fafc;
-    color: #475569;
-    border: 1px solid #e2e8f0;
-    padding: 0.6rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .btn-action:hover {
-    background-color: #0f172a;
-    color: #ffffff;
-    border-color: #0f172a;
-  }
+  padding: 2.5rem 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1e293b;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.branches-header {
+  margin-bottom: 1.5rem;
+}
+
+.branches-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.branches-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.branch-item {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  color: #334155;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.branch-item strong {
+  color: #0f172a;
+}
+
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-card h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.form-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.form-inputs input {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.form-inputs input:focus {
+  border-color: #0f172a;
+}
+
+.btn-add {
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-add:hover:not(:disabled) {
+  background-color: #1e293b;
+}
+
+.btn-delete {
+  background-color: transparent;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: #fee2e2;
+}
+
+.msg-error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0 0;
+}
+
+
   

@@ -12,10 +12,13 @@
 
 .dashboard-header h2 {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #0f172a;
   margin: 0 0 0.5rem 0;
   letter-spacing: -0.025em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dashboard-header p {
@@ -23,6 +26,45 @@
   font-size: 1rem;
   margin: 0;
 }
+
+/* Leyenda centrada arriba de los gráficos */
+.branch-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.color-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.color-dot.blue { background-color: blue; }
+.color-dot.red { background-color: red; }
+.color-dot.green { background-color: green; }
+.color-dot.orange { background-color: orange; }
+.color-dot.purple { background-color: purple; }
 
 /* Estilo Base de las Tarjetas (Cards) */
 .card {
@@ -41,6 +83,7 @@
   gap: 1.5rem;
 }
 
+.chart-card h2,
 .chart-card h3 {
   font-size: 1.1rem;
   font-weight: 700;
@@ -61,7 +104,7 @@ svg {
   width: 100%;
   height: auto;
   display: block;
-  overflow: visible; /* Permite ver textos que sobresalen */
+  overflow: visible;
 }
 
 /* === ESTILOS PARA LA TABLA INYECTADA DINÁMICAMENTE === */
@@ -117,3 +160,5 @@ svg {
     overflow-x: auto;
   }
 }
+
+

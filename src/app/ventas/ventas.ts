@@ -1,5 +1,7 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-ventas',
   standalone: true,
@@ -16,11 +18,15 @@ export class Ventas implements AfterViewInit{
   sucursales: string[] = ["Mes", "Santa Fe", "Paraná", "Santo Tome", "Rafaela", "Rosario"];
   meses: string[] = ["", "ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngAfterViewInit(): void {
-    this.inicializarDatos();
-    this.dibujarTabla();
-    this.graficarLineas();
-    this.graficarBarrasApiladas();
+    if (isPlatformBrowser(this.platformId)) {
+      this.inicializarDatos();
+      this.dibujarTabla();
+      this.graficarLineas();
+      this.graficarBarrasApiladas();
+    }
   }
 
   inicializarDatos() {
@@ -36,7 +42,6 @@ export class Ventas implements AfterViewInit{
 
   dibujarTabla() {
     let tabla = "<table border='1'>";
-    tabla += "<caption>Grafica Sucursales</caption>";
     tabla += "<thead><tr>";
     for (let x = 0; x < this.sucursales.length; x++) {
       tabla += "<th>" + this.sucursales[x] + "</th>";
@@ -110,7 +115,7 @@ export class Ventas implements AfterViewInit{
       let acumulado = 0;
       for (let c = 1; c <= sucursales; c++) {
         let valor = this.datos[f][c];
-        let barAlto = (valor / maxTotal) * (alto - 40);
+        let barAlto = (valor / maxTotal) * (alto - 60);
         let x = (f - 1) * grupoAncho;
         let y = alto - acumulado - barAlto - 20;
 

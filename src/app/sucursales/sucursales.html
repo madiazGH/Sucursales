@@ -1,34 +1,67 @@
 <section class="branches-container">
-    <!-- Encabezado de la Sección -->
-    <div class="branches-header">
-      <h2>Nuestras Sucursales</h2>
-      <p>Visualiza y administra la información de las sedes operativas de la empresa.</p>
-    </div>
-  
-    <!-- Contenedor de Tarjetas (Grid) -->
-    <div class="branches-grid">
-      @for (s of suc; track s.id) {
-        <div class="branch-card">
-                      
-          <!-- Detalle Principal -->
-          <div class="branch-info">
-            <div class="info-icon">📍</div>
-            <div class="info-text">
-              <h3>Sucursal {{s.id}}</h3>
-              <p class="address">{{s.dir}}</p>
-            </div>
-          </div>
-  
-          <!-- Métrica de Empleados -->
-          <div class="branch-meta">
-            <div class="meta-item">
-              <span class="meta-icon">👥</span>
-              <span class="meta-label">Personal:</span>
-              <span class="meta-value">{{s.nEmp}} Empleados</span>
-            </div>
-          </div>
-          
+  <div class="branches-header">
+    <h2>Sucursales</h2>
+  </div>
+
+  @if (authService.isAdmin()) {
+    <div class="form-card">
+      <h3>Agregar Nueva Sucursal</h3>
+      <form (ngSubmit)="agregarSucursal()" class="branch-form">
+        <div class="form-inputs">
+          <input
+            type="text"
+            [(ngModel)]="nombre"
+            name="nombre"
+            placeholder="Nombre de sucursal"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="ciudad"
+            name="ciudad"
+            placeholder="Ciudad"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="direccion"
+            name="direccion"
+            placeholder="Dirección"
+            required
+          />
+          <input
+            type="number"
+            [(ngModel)]="cantempleado"
+            name="cantempleado"
+            placeholder="Cant. empleados"
+            min="0"
+            required
+          />
+          <button type="submit" class="btn-add" [disabled]="cargando">
+            {{ cargando ? 'Guardando...' : '+ Agregar Sucursal' }}
+          </button>
         </div>
-      }
+
+        @if (errorMsg) {
+          <p class="msg-error">{{ errorMsg }}</p>
+        }
+      </form>
     </div>
-  </section>
+  }
+
+  <ul class="branches-list">
+    @for (s of suc; track s.idSucursal) {
+      <li class="branch-item">
+        <div class="branch-text">
+          <strong>Sucursal {{ s.nombre }}</strong> — {{ s.direccion }}, {{ s.ciudad }} - {{ s.cantempleado }} empleados
+        </div>
+        @if (authService.isAdmin()) {
+          <button type="button" class="btn-delete" (click)="eliminarSucursal(s.idSucursal)">
+            Eliminar
+          </button>
+        }
+      </li>
+    }
+  </ul>
+</section>
+

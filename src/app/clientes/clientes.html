@@ -1,48 +1,82 @@
 <section class="customers-container">
-    <div class="customers-header">
-      <h2>Listado de Clientes</h2>
-      <p>Administra la base de datos de usuarios, altas, bajas y el estado de sus cuentas.</p>
+  <div class="customers-header">
+    <h2>Clientes</h2>
+  </div>
+
+  @if (authService.isAdmin()) {
+    <div class="form-card">
+      <h3>Agregar Nuevo Cliente</h3>
+      <form (ngSubmit)="agregarCliente()" class="client-form">
+        <div class="form-inputs">
+          <input
+            type="text"
+            [(ngModel)]="nombre"
+            name="nombre"
+            placeholder="Nombre"
+            required
+          />
+          <input
+            type="text"
+            [(ngModel)]="apellido"
+            name="apellido"
+            placeholder="Apellido"
+            required
+          />
+          <input
+            type="number"
+            [(ngModel)]="dni"
+            name="dni"
+            placeholder="DNI"
+            required
+          />
+          <select [(ngModel)]="situacionFiscal" name="situacionFiscal">
+            @for (sit of situaciones; track sit) {
+              <option [value]="sit">{{ sit }}</option>
+            }
+          </select>
+          <button type="submit" class="btn-add" [disabled]="cargando">
+            {{ cargando ? 'Guardando...' : '+ Agregar Cliente' }}
+          </button>
+        </div>
+
+        @if (errorMsg) {
+          <p class="msg-error">{{ errorMsg }}</p>
+        }
+      </form>
     </div>
-  
-    <div class="table-responsive">
-      <table class="customers-table">
-        <thead>
-          <tr>
-            <th>Cliente (Apellido y Nombre)</th>
-            <th class="text-center">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (cl of clients; track cl.apel) {
-            <tr>
-              <!-- Identidad del Cliente -->
-              <td>
-                <div class="customer-info">
-                  <div class="avatar-fallback">
-                    {{ cl.Apel.charAt(0) }}{{ cl.Nombre.charAt(0) }}
-                  </div>
-                  <div class="customer-name">
-                    <span class="lastname">{{ cl.Apel }}</span>, {{ cl.Nombre }}
-                  </div>
-                </div>
-              </td>
-  
-              <td class="text-center">
-                @if (cl.Activo) {
-                  <span class="status-badge active">
-                    <span class="status-icon">✓</span> Activo
-                  </span>
-                } @else {
-                  <span class="status-badge inactive">
-                    <span class="status-icon">✕</span> Inactivo
-                  </span>
-                }
-              </td>
-  
-            </tr>
+  }
+
+  <div class="table-responsive">
+    <table class="customers-table">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>DNI</th>
+          <th>Situación Fiscal</th>
+          @if (authService.isAdmin()) {
+            <th class="text-right">Acciones</th>
           }
-        </tbody>
-      </table>
-    </div>
-  </section>
+        </tr>
+      </thead>
+      <tbody>
+        @for (cl of clients; track cl.idCliente) {
+          <tr>
+            <td>{{ cl.apellido }}, {{ cl.nombre }}</td>
+            <td>{{ cl.dni }}</td>
+            <td>{{ cl.situacionFiscal }}</td>
+            @if (authService.isAdmin()) {
+              <td class="text-right">
+                <button type="button" class="btn-delete" (click)="eliminarCliente(cl.idCliente)">
+                  Eliminar
+                </button>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
   

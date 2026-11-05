@@ -1,0 +1,85 @@
+<section class="users-container">
+  <div class="users-header">
+    <h2>Gestión de Usuarios</h2>
+  </div>
+
+  <!-- Formulario para agregar nuevo empleado -->
+  <div class="form-card">
+    <h3>Agregar Nuevo Empleado</h3>
+    <form (ngSubmit)="agregarEmpleado()" class="user-form">
+      <div class="form-inputs">
+        <input
+          type="text"
+          [(ngModel)]="nuevoNombre"
+          name="nuevoNombre"
+          placeholder="Nombre y Apellido"
+          required
+        />
+        <input
+          type="text"
+          [(ngModel)]="nuevoUsuario"
+          name="nuevoUsuario"
+          placeholder="Nombre de Usuario"
+          required
+        />
+        <input
+          type="password"
+          [(ngModel)]="nuevoPassword"
+          name="nuevoPassword"
+          placeholder="Contraseña"
+          required
+        />
+        <button type="submit" class="btn-add" [disabled]="cargando">
+          {{ cargando ? 'Guardando...' : '+ Agregar Empleado' }}
+        </button>
+      </div>
+
+      @if (errorMsg) {
+        <p class="msg-error">{{ errorMsg }}</p>
+      }
+      @if (exitoMsg) {
+        <p class="msg-success">{{ exitoMsg }}</p>
+      }
+    </form>
+  </div>
+
+  <!-- Lista de usuarios -->
+  <div class="table-responsive">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Rol</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of usuarios; track u.idUsuario) {
+          <tr>
+            <td>{{ u.nombre }}</td>
+            <td><strong>{{ u.usuario }}</strong></td>
+            <td>
+              <span class="role-badge" [class.admin-role]="u.rol === 'Admin'">
+                {{ u.rol }}
+              </span>
+            </td>
+            <td class="text-right">
+              @if (u.rol !== 'Admin') {
+                <button
+                  type="button"
+                  class="btn-delete"
+                  (click)="eliminarUsuario(u.idUsuario, u.rol)"
+                >
+                  Eliminar
+                </button>
+              } @else {
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+

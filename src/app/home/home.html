@@ -1,37 +1,28 @@
 <section class="hero-container">
   <div class="hero-content">
-    <h1>Panel de Control <span class="text-highlight">AngularRM</span></h1>
-    <p>Gestiona tus ventas, sucursales y clientes desde una sola interfaz moderna, rápida y eficiente.</p>
-    
-    
-    <div class="features-grid">
-      <a routerLink="/ventas">
-      <div class="feature-card">
-        <div class="icon">📈</div>
-        <h3>Ventas</h3>
-        <p>Monitorea ingresos y transacciones en tiempo real.</p>
-      </div>
-    </a>
+    <h1>Gestión de sucursales y ventas - PII</h1>
 
-    <a routerLink="/sucursales">
-      <div class="feature-card">
-        <div class="icon">📍</div>
-        <h3>Sucursales</h3>
-        <p>Administra ubicaciones y stock disponible.</p>
-      </div>
-    </a>
-    <a routerLink="/clientes">
-      <div class="feature-card">
-        <div class="icon">👥</div>
-        <h3>Clientes</h3>
-        <p>Fideliza y organiza tu base de datos de usuarios.</p>
-      </div>
-    </a>
-    
-    </div>
+    <ul class="simple-nav-list">
+      <li>
+        <a routerLink="/sucursales">Sucursales</a>
+      </li>
+
+      @if (authService.isLoggedIn()) {
+        <li>
+          <a routerLink="/ventas">Ventas</a>
+        </li>
+        <li>
+          <a routerLink="/clientes">Clientes</a>
+        </li>
+      }
+
+      @if (authService.isAdmin()) {
+        <li>
+          <a routerLink="/usuarios">Usuarios</a>
+        </li>
+      }
+    </ul>
   </div>
 </section>
 
-<router-outlet>
-
-</router-outlet>
+<router-outlet></router-outlet>

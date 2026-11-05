@@ -1,13 +1,14 @@
 :root {
-  --primary-color: #dd0031;   
-  --text-dark: #0f172a;        
-  --text-light: #64748b;       
-  --bg-header: #ffffff;        
-  --border-color: #f1f5f9;    
+  --primary-color: #dd0031;
+  --text-dark: #0f172a;
+  --text-light: #64748b;
+  --bg-header: #ffffff;
+  --border-color: #f1f5f9;
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   background-color: #f8fafc;
@@ -16,7 +17,7 @@ html, body {
 
 /* Header */
 .main-header {
-  background-color: var(--bg-header); 
+  background-color: rgb(223, 223, 223) !important;
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   position: sticky;
@@ -32,12 +33,14 @@ html, body {
   justify-content: space-between;
   align-items: center;
   height: 70px;
+  position: relative;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex: 1;
 }
 
 .brand-icon {
@@ -54,7 +57,65 @@ html, body {
 
 .nav-menu {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
+  flex: 2;
+}
+
+.auth-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+}
+
+.btn-login {
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+  background-color: #1e293b;
+}
+
+.active-login {
+  outline: 2px solid #0f172a;
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.user-name {
+  color: #334155;
+  font-weight: 600;
+}
+
+.btn-logout {
+  background-color: transparent;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #fee2e2;
 }
 
 .nav-btn {
@@ -64,19 +125,19 @@ html, body {
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
   font-weight: 500;
-  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
+  border-radius: 5px;
 }
 
 .nav-btn:hover {
-  background-color: #f1f5f9;
-  color: var(--text-dark);
+  background-color: #bebebe;
+  color: rgb(0, 0, 0);
 }
 
 .active-link {
-  background-color: #fff1f2 !important;
-  color: var(--primary-color) !important;
+  background-color: #000000 !important;
+  color: white !important;
   font-weight: 600;
 }
 
@@ -84,7 +145,7 @@ html, body {
 .content-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  min-height: calc(100vh - 140px); 
+  min-height: calc(100vh - 140px);
 }
 
 /* Footer */
@@ -92,7 +153,8 @@ html, body {
   text-align: center;
   padding: 1.5rem;
   border-top: 1px solid var(--border-color);
-  background-color: var(--bg-header); /* mismo color que el header */
+  background-color: var(--bg-header);
+  /* mismo color que el header */
   color: var(--text-light);
   font-size: 0.85rem;
   margin-top: auto;
@@ -109,12 +171,12 @@ html, body {
     padding: 1rem 0;
     gap: 1rem;
   }
-  
+
   .nav-menu {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .nav-btn {
     flex: 1;
     text-align: center;
